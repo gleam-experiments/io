@@ -1,6 +1,6 @@
 import gleam/dynamic.{Dynamic}
 
-external type NoLeak
+external type NoLeak;
 
 pub external fn stdin_read_all() -> Result(String, Dynamic)
   = "gleam_io" "stdin_read_all"
@@ -15,10 +15,10 @@ pub fn print(string) -> Nil {
 
 pub external type IoDevice
 
-enum LiteralIoDevice {
+type LiteralIoDevice {
   StandardIo
   StandardError
-}
+};
 
 external fn do_write(IoDevice, String, List(String)) -> NoLeak
   = "io" "fwrite"
