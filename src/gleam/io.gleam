@@ -31,3 +31,25 @@ pub fn write(string, device) -> Nil {
   do_write(device, string, [])
   Nil
 }
+
+external fn erl_display(a) -> Nil =
+  "erlang" "display"
+
+/// Print a given value using Erlang syntax and return the value.
+///
+/// This is useful for runtime debugging of your code that type checks but have
+/// unexpected behaviour.
+///
+/// ## Examples
+///
+///    display(Ok("Gleam")) // Prints `{ok, <<"Gleam">>}`
+///
+///    data
+///    |> transform
+///    |> display // Prints the value at this point in the pipeline
+///    |> analyse
+///
+pub fn display(x: anything) -> anything {
+  erl_display(x)
+  x
+}
